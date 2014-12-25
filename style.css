@@ -1,0 +1,86 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+
+body {
+  font-family: 'Droid Serif', serif;
+  position: relative;
+}
+
+#above-nav-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 20px 0 10px 0;
+  text-align: left;
+}
+  
+#above-nav-slogan {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 26px 0 16px 0;
+  text-align: right;
+}
+
+#site-header {
+  font-size: 24px;
+  padding-bottom: 12px;
+  font-weight: bold;
+}
+
+#siteHeaderSection {
+  background-color: #3b5998;
+  color: #FFF;
+  margin-top: -50px;
+  padding: 100px 0 45px 0;
+}
+
+.btn-crypto {
+    padding: 10px 16px;
+    font-size: 24px;
+    border-color: #FFFFFF;
+  	background-color: #3b5998;
+	color: #FFFFFF;
+	margin-top: 16px;
+  
+      -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+
+.btn-crypto:hover {
+    background-color: #FFFFFF;
+	color: #3b5998;
+	border-color: #FFFFFF;
+  
+      -o-transition:1s;
+    -ms-transition:1s;
+    -moz-transition:1s;
+    -webkit-transition:1s;
+    transition:1s;
+}    
+
+footer {
+    background-color: #3b5998;
+    color: #FFFFFF;
+	margin-top: 20px;
+}
+
+footer a, footer a:link, footer a:hover, footer a:visited, footer a:active {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+footer p {
+  padding: 20px 0 10px 0;
+}
+
+#nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
+
+.panel-title>a {
+    color: #3b5998;
+}

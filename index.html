@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CryptoLib - open-source PHP Cryptography class</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	  <!-- Favicon -->
+	  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+	  <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
+	  <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+	  <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png" />
+	  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+	  <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png" />
+	  <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png" />
+	  <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png" />
+  </head>
+  <body data-spy="scroll" data-target="#nav-scroll">
+		<header>
+		  <div class="container">
+		    <div class="row">
+		      <div class="col-xs-6">
+		        <p id="above-nav-title">CryptoLib</p>
+		      </div>
+		      <div class="col-xs-6 hidden-xs">
+		        <p id="above-nav-slogan">Cryptography for PHP</p>
+		      </div>
+		    </div>
+		  </div>
+		</header>
+		
+		<div id="nav">
+		  <div class="navbar navbar-inverse navbar-static-top">
+		    <div class="container">
+		      <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		        </button>
+		        <a class="navbar-brand" href="#">Documentation</a>
+		      </div>
+		      <div class="collapse navbar-collapse" id="nav-scroll">
+		        <ul class="nav navbar-nav">
+		          <li><a href="#siteHeaderSection">Home</a></li>
+		          <li><a href="#intro">Introduction</a></li>
+		          <li><a href="#pseudorandom">Pseudorandom</a></li>
+		          <li><a href="#hashing">Hashing</a></li>
+		          <li><a href="#encryption">Encryption</a></li>
+		        </ul>
+		      </div><!--/.nav-collapse -->
+		    </div>
+		  </div>
+		</div>
+		
+		<main>
+		  <article id="siteHeaderSection">
+		    <div class="container">
+		      
+		      <div class="text-center">
+		        <h1 id="site-header">CryptoLib: secure, free &amp; open-source PHP cryptography library for everyone.</h1>
+		        <p class="lead introduction-text">Secure pseudorandom number/hex/string generator with repeatability checker.</p>
+		        <p class="lead introduction-text">Salted PBKDF2 hashing using alternations between SHA512 and Whirlpool.</p>
+		        <p class="lead introduction-text">Two-way cascading encryption using Rijndael 256, Twofish and Serpent.</p>
+		        <p><a href="https://github.com/IcyApril/CryptoLib/archive/master.zip" class="btn btn-default btn-lg btn-crypto" role="button">Download v0.8 (Christmas Release)</a></p>
+		      </div>
+		      
+		    </div><!-- /.container -->
+		  </article>
+		  
+		  <div class="container">
+		    <div class="col-md-12">
+		      <article id="intro">
+		      	<h1>Introduction</h1>
+		        
+		        <div class="alert alert-danger" role="alert">No encryption system can make something impossible to crack, it can make this very (very, very, very) difficult to crack;
+		        cryptography is about creating a puzzle which is mathematically harder to solve than create. This applies to everything cryptographic and this library is no exception,
+		        always be careful with encryption when people's lives are on the line.</div>
+
+				  <p>
+					  The CryptoLib project is on GitHub at: <a href="https://github.com/IcyApril/CryptoLib">GitHub.com/IcyApril/CryptoLib</a>.
+				  </p>
+
+		        <h2>Requirements</h2>
+		        
+		        <p class="lead">CryptoLib requires PHP 5.3.0+ (with OpenSSL and MCrypt &gt; 2.4.x).</p>
+		        <p>Yes, it does use one of the latest versions of PHP, I've put security above compatibility in this library, but all good webhosts will support this. If you're
+		        using your own server and you haven't upgraded your PHP installation to a version greater than 5.3 I question your sanity. In order to ensure your security extensions
+				don't have known exploits it's always a good idea to use the latest and greatest security extensions where practical.</p>
+		        
+		      <div class="panel-group" id="installing-mcrypt">
+		        <div class="panel panel-default">
+		          <div class="panel-heading">
+		            <h4 class="panel-title">
+		              <a data-toggle="collapse" data-parent="#installing-mcrypt" href="#collapse1">Geek tip: Installing MCrypt on Ubuntu</a>
+		            </h4>
+		          </div>
+		          <div id="collapse1" class="panel-collapse collapse">
+		            <div class="panel-body">
+		              <p>Assuming you're using Apache and you've got PHP installed, it's as easy as:</p>
+		            	<pre>sudo apt-get install php5-mcrypt
+sudo php5enmod mcrypt
+sudo apache2ctl restart</pre>
+		            </div>
+		          </div>
+		        </div>
+		        </div>
+
+				  <h2>Demo</h2>
+				  <p>
+					  When you download CryptoLib it will contain a demo.php file, this is a fully functional demo of the functions in CryptoLib. If you download and run this
+					  on your web server it will make this documentation a lot easier to understand and play around with.
+				  </p>
+		        
+		        <h2>The History</h2>
+		        
+		      	<p>CryptoLib seeks to build a secure, reliable and standardised library for implementing cryptograhy in PHP. "But why do we need this?", I hear you cry;
+		          the answer is simple, security has, for the most part been something that's been hacked together by web developers who aren't (and shouldn't expect to be)
+		          proficient in cryptography.</p>
+		        
+		        <p>For example: hashing passwords before they are inserted into a database; something that ensures that passwords cannot be read if the database.
+		          Every web developer does this their own way (if they do it at all) and most clearly can't do it properly. Some developers will not bother to salt passwords,
+		          just hash a password 1000 in a for loop or even just MD5 hash a password.
+		        </p>
+		        
+		        <p>With CryptoLib every web developer will have at their fingertips a complete library to perform secure hashing.
+		        If you want to hash a password you simply provide the password from the user and a salt and you will get back a hash which you can be confident is secure.
+		      	CryptoLib isn't just about hashing though, using CryptoLib you can use two-way hashing using 3 cascading algorithms to keep your secrets private without
+		        relying on just 1 cipher. It contains a random number generator and a randomness checker so you can check how random the generated numbers are.
+		        </p>
+		        
+		        <p>Looking to the future, at some point I would like this script to be able to support public/private key cryptography and implement plausible deniability
+		        (rubberhose deniable encryption) functions which utilise the existing two-way encryption technique but using encrypted containers.</p>
+		        
+		        <h2>Installing</h2>
+		        
+		        <p>In order to use CryptoLib, simply drop the the file somewhere in your PHP project and include it (change path/to to your classes path):
+		          </p><pre>&lt;?php
+require_once('path/to/cryptolib.php');
+?&gt;</pre>
+				  <p>In order to improve security, you should open up the cryptolib.php file and change on line 29 the value of $pepper to a random string of numbers and letters.
+				  You should do this everytime you install CryptoLib on a different project.</p>
+
+				<p>You can then call the functions that are documented in the rest of this page as follows (e.g. let's echo a random number between 1 and 6):</p>
+		
+				<pre>&lt;?php
+echo CryptoLib::randomInt(1, 6);
+?&gt;</pre>
+		        <p>All methods in the CryptoLib class are static meaning they are called with :: (double colons, known in PHP by their catchy name: Paamayim Nekudotayim).</p>
+				
+		      </article>
+		      </div>
+		      </div>
+		      <hr>
+                <div class="container">
+                  <div class="col-md-12">
+                      <article id="pseudorandom">
+                        <h1>(Pseudo) random Hex/Number/String generator</h1>
+                        <p>
+							CryptoLib has a number of pseudo-random number generators (technically you can only achieve true randomness using quantum phenomena, like using
+							radioactive decay) but this random for most purposes.
+						</p>
+						  <p>
+							  CryptoLib uses the CryptoLib::pseudoBytes function, this function simply returns random bytes using openssl_random_pseudo_bytes). This is a private
+							  function so it cannot be called from classes that extend CryptoLib or from outside the class.
+						  </p>
+						  <h3>Random Integer</h3>
+						  <p>
+							  CryptoLib can generate random integers between a minimum ($min) and a maximum ($max) number (inclusive of the minimum and the maximum); here's the syntax:
+						  </p>
+						  <pre>&lt;?php
+echo CryptoLib::randomInt($min, $max);
+?&gt;</pre>
+						  <p>
+							  For example; let's generate a random number which would be on a dice:
+						  </p>
+						  <pre>&lt;?php
+echo CryptoLib::randomInt(1, 6);
+?&gt;</pre>
+
+						  <h3>Random String</h3>
+						  <p>
+							  CryptoLib can generate a random string of a given length, this string will include numbers, upper and lower case letters; here's the syntax:
+						  </p>
+						  <pre>&lt;?php
+echo CryptoLib::randomString($length);
+?&gt;</pre>
+						  <p>
+							  For example; let's generate a random string of 64 characters in length:
+						  </p>
+						  <pre>&lt;?php
+echo CryptoLib::randomString(64);
+?&gt;</pre>
+
+						  <h3>Random Hexadecimal</h3>
+						  <p>
+							  CryptoLib can generate a random hexadecimal string; here's the syntax:
+						  </p>
+						  <pre>&lt;?php
+echo CryptoLib::randomHex($length);
+?&gt;</pre>
+						  <p>
+							  For example; let's generate a random hex string of 128 characters:
+						  </p>
+						  <pre>&lt;?php
+echo CryptoLib::randomHex(128);
+?&gt;</pre>
+                      </article>
+                  </div>
+                </div>
+		      <hr>
+            <div class="container">
+              <div class="col-md-12">
+                  <article id="hashing">
+                    <h1>Hashing (one-way encryption)</h1>
+                      <p>The hash function is quite simple, it only requires 1 argument (though it has many optional ones). All you need to provide it with is the password you want to secure.
+						  In short: Hashing allows you to generate a string from another string. The new string is practically impossible to turn back into the original password; however you
+						  can check that a hash came from the same password by using the validateHash function (described in the next section down). Using the CryptoLib hash function the hashes
+						  are always 256 characters in length.
+                      This makes it safer to store passwords in the database.</p>
+                      <p>Below is an example of a hash being generated and echoed:</p>
+                      <pre>&lt;?php
+$string = "userPassword";
+echo CryptoLib::hash($string);
+?&gt;</pre>
+					  <h2>Validating Hashes</h2>
+					  <p>CryptoLib includes a validateHash function so you know if a hash is correct or not. Below is an example of this in use:</p>
+                      <pre>&lt;?php
+$string = "userPassword";
+$hash = CryptoLib::hash($string);
+
+// Salt and hash are then stored in the database.
+
+// $hash and $salt are gotten later from the database, and the password is provided via a POST variable:
+$isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
+
+// If isHashCorrect is true, the user has provided the correct password.
+?&gt;</pre>
+                      
+                      <h2>Advanced</h2>
+					  <h3>Salting</h3>
+					  <p>CryptoLib does hashing with salting and peppering automatically. The salt pepper is in the CryptoLib library itself and the salts are randomly generated using CryptoLib's
+						  own pseudo random cryptographic string generator, it is concatenated to the start of the hash before it is returned. It is seperated by an underscore between the end of the
+						  salt and start of the hash. In CryptoLib it is possible to specify exactly what the salt you want to use is. This is the second argument of the function and it can be called
+						  as follows:</p>
+                      <pre>&lt;?php
+$string = "userPassword";
+$salt = CryptoLib::generateSalt();
+$hash = CryptoLib::hash($string, $salt);
+
+// Salt and hash are then stored in the database.
+
+// $hash and $salt are gotten later from the database, and the password is provided via a POST variable:
+$isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
+
+// If isHashCorrect is true, the user has provided the correct password.
+?&gt;</pre>
+                      <h3>SOHA (Server Oriented Hashing Algorithm)</h3>
+                      <p class="lead">SOHA is an implemention of PBKDF2 with SHA512 and Whirlpool alternations.</p>
+                      <p>Providing the amount of iternations isn't changed; the function will alternate between SHA512 and Whirlpool 64 times each time performing 32 PBKDF2 iterations.
+                      This results in the string being hashed a total of 2048 times, This is efficient enough to not bog down the server while ensuring a nice, secure hash is generated.
+                      This is an implementation of PBKDF2 designed for the web era where hashing is done server-side.</p>
+                      <h3>Additional arguments</h3>
+                      <p>In code the hash function has the following arguments:</p>
+					  <pre>CryptoLib::hash ($data, $salt = NULL, $raw_output = FALSE, $iterations = 96)</pre>
+					  <p>Data is the only compulsory one, it is the data you want to hash, $salt can be specified in case you want to manually hash the password using your own salt (as
+						  opposed to a pseudo randomly generated one). If $raw_ouput is true the function will return binary instead of a string.</p>
+					  <p>
+						  Iterations specifies the amount of times you want the password to be hashed (but in a very complicated way); this number should ideally be divisible by three.
+						  Two-thirds of the iterations will be the amount of times the hashing algorithm alternates, the remaining third is the amount of iterations passed to the
+						  PBKDF2 function. With the default of 96, this means there will be 64 loops,each with the PBKDF2 function run 32 times. This means the total amount of
+						  iterations is 64 times 32 which is 2048. Given how weird and complicated this one is, it shouldn't be changed unless you know what's going on.
+					  </p>
+                      <h3>Hash Format and validateHash function</h3>
+					  <p>
+						  The hashes produced by CryptoLib include the salt at the start seperated from the hash itself with an underscore. The validate hash function will seperate
+						  the salt from the hash and rehash the password.
+					  </p>
+                  </article>
+              </div>
+            </div>
+            <hr>
+            <div class="container">
+              <div class="col-md-12">
+                  <article id="encryption">
+                    <h1>Two-Way Cascading Encryption</h1>
+                    <p>This function uses MCrypt with 3 seperate ciphers (Serpant, then Twofish and finally Rijndael 256) to encrypt the data with multiple layers of encryption.
+						This means if one cipher is broken the others ciphers stand in its way.
+					Below I have demonstrated how you can use the functions in PHP:</p>
+					  <pre>&lt;?php
+$encryptedString = CryptoLib::encryptData("Test string.", "password");
+$decryptedString = CryptoLib::decryptData($encryptedString, 'password');
+?&gt;</pre>
+					  <p>
+						  $encryptedString will contain the encrypted data in a format that when provided to the decryptData function with the correct password, the original string will
+						  be returned (see the advanced information section for details on the exact format).
+					  </p>
+					  <h3>Advanced information</h3>
+					  <p>
+						  The encryption functions will start off by checking that MCrypt (a dependency of these functions) is installed. The string returned by the encryptData function
+						  stores first the hashing salt then an underscore, then the random IV, another underscore and finally the encrypted data.  The encryptData function uses CBC
+						  mode and by default first encrypts the data with Serpant, then Twofish and finally Rijndael 256. The encryption function, after using CryptoLib layered (cascading)
+						  hashing algoritm then rehashes the password in SHA256 to get the hash to be the correct length (with raw data being returned). The salt is the same for all encryption
+						  layers. Null bytes are removed by the decryptData function at each decryption.
+					  </p>
+
+					  <p>
+						  The checkMCrypt function in the class is protected (only classes which extend CryptoLib or CryptoLib itself can use it). It will be run before encryption and decryption
+						  and checks if MCrypt with the required ciphers is installed.
+					  </p>
+                  </article>
+              </div>
+            </div>
+		</main>
+		<footer>
+		  <div class="container">
+		    <p>CryptoLib by <a href="https://junade.com">Junade</a>.</p>
+		  </div>
+		</footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
