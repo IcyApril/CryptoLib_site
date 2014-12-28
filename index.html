@@ -114,9 +114,9 @@
 		          <div id="collapse1" class="panel-collapse collapse">
 		            <div class="panel-body">
 		              <p>Assuming you're using Apache and you've got PHP installed, it's as easy as:</p>
-		            	<pre>sudo apt-get install php5-mcrypt
+		            	<pre><code class="bash">sudo apt-get install php5-mcrypt
 sudo php5enmod mcrypt
-sudo apache2ctl restart</pre>
+sudo apache2ctl restart</code></pre>
 		            </div>
 		          </div>
 		        </div>
@@ -151,17 +151,17 @@ sudo apache2ctl restart</pre>
 		        <h2>Installing</h2>
 		        
 		        <p>In order to use CryptoLib, simply drop the the file somewhere in your PHP project and include it (change path/to to your classes path):
-		          </p><pre>&lt;?php
+		          </p><pre><code class="php">&lt;?php
 require_once('path/to/cryptolib.php');
-?&gt;</pre>
+?&gt;</code></pre>
 				  <p>In order to improve security, you should open up the cryptolib.php file and change on line 29 the value of $pepper to a random string of numbers and letters.
 				  You should do this everytime you install CryptoLib on a different project.</p>
 
 				<p>You can then call the functions that are documented in the rest of this page as follows (e.g. let's echo a random number between 1 and 6):</p>
 		
-				<pre>&lt;?php
+				<pre><code class="php">&lt;?php
 echo CryptoLib::randomInt(1, 6);
-?&gt;</pre>
+?&gt;</code></pre>
 		        <p>All methods in the CryptoLib class are static meaning they are called with :: (double colons, known in PHP by their catchy name: Paamayim Nekudotayim).</p>
 				
 		      </article>
@@ -184,43 +184,43 @@ echo CryptoLib::randomInt(1, 6);
 						  <p>
 							  CryptoLib can generate random integers between a minimum ($min) and a maximum ($max) number (inclusive of the minimum and the maximum); here's the syntax:
 						  </p>
-						  <pre>&lt;?php
+						  <pre><code class="php">&lt;?php
 echo CryptoLib::randomInt($min, $max);
-?&gt;</pre>
+?&gt;</code></pre>
 						  <p>
 							  For example; let's generate a random number which would be on a dice:
 						  </p>
-						  <pre>&lt;?php
+						  <pre><code class="php">&lt;?php
 echo CryptoLib::randomInt(1, 6);
-?&gt;</pre>
+?&gt;</code></pre>
 
 						  <h3>Random String</h3>
 						  <p>
 							  CryptoLib can generate a random string of a given length, this string will include numbers, upper and lower case letters; here's the syntax:
 						  </p>
-						  <pre>&lt;?php
+						  <pre><code class="php">&lt;?php
 echo CryptoLib::randomString($length);
-?&gt;</pre>
+?&gt;</code></pre>
 						  <p>
 							  For example; let's generate a random string of 64 characters in length:
 						  </p>
-						  <pre>&lt;?php
+						  <pre><code class="php">&lt;?php
 echo CryptoLib::randomString(64);
-?&gt;</pre>
+?&gt;</code></pre>
 
 						  <h3>Random Hexadecimal</h3>
 						  <p>
 							  CryptoLib can generate a random hexadecimal string; here's the syntax:
 						  </p>
-						  <pre>&lt;?php
+						  <pre><code class="php">&lt;?php
 echo CryptoLib::randomHex($length);
-?&gt;</pre>
+?&gt;</code></pre>
 						  <p>
 							  For example; let's generate a random hex string of 128 characters:
 						  </p>
-						  <pre>&lt;?php
+						  <pre><code class="php">&lt;?php
 echo CryptoLib::randomHex(128);
-?&gt;</pre>
+?&gt;</code></pre>
                       </article>
                   </div>
                 </div>
@@ -235,13 +235,13 @@ echo CryptoLib::randomHex(128);
 						  are always 256 characters in length.
                       This makes it safer to store passwords in the database.</p>
                       <p>Below is an example of a hash being generated and echoed:</p>
-                      <pre>&lt;?php
+                      <pre><code class="php">&lt;?php
 $string = "userPassword";
 echo CryptoLib::hash($string);
-?&gt;</pre>
+?&gt;</code></pre>
 					  <h2>Validating Hashes</h2>
 					  <p>CryptoLib includes a validateHash function so you know if a hash is correct or not. Below is an example of this in use:</p>
-                      <pre>&lt;?php
+                      <pre><code class="php">&lt;?php
 $string = "userPassword";
 $hash = CryptoLib::hash($string);
 
@@ -251,7 +251,7 @@ $hash = CryptoLib::hash($string);
 $isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
 
 // If isHashCorrect is true, the user has provided the correct password.
-?&gt;</pre>
+?&gt;</code></pre>
                       
                       <h2>Advanced</h2>
 					  <h3>Salting</h3>
@@ -259,7 +259,7 @@ $isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
 						  own pseudo random cryptographic string generator, it is concatenated to the start of the hash before it is returned. It is seperated by an underscore between the end of the
 						  salt and start of the hash. In CryptoLib it is possible to specify exactly what the salt you want to use is. This is the second argument of the function and it can be called
 						  as follows:</p>
-                      <pre>&lt;?php
+                      <pre><code class="php">&lt;?php
 $string = "userPassword";
 $salt = CryptoLib::generateSalt();
 $hash = CryptoLib::hash($string, $salt);
@@ -270,7 +270,7 @@ $hash = CryptoLib::hash($string, $salt);
 $isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
 
 // If isHashCorrect is true, the user has provided the correct password.
-?&gt;</pre>
+?&gt;</code></pre>
                       <h3>SOHA (Server Oriented Hashing Algorithm)</h3>
                       <p class="lead">SOHA is an implemention of PBKDF2 with SHA512 and Whirlpool alternations.</p>
                       <p>Providing the amount of iternations isn't changed; the function will alternate between SHA512 and Whirlpool 64 times each time performing 32 PBKDF2 iterations.
@@ -278,7 +278,7 @@ $isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
                       This is an implementation of PBKDF2 designed for the web era where hashing is done server-side.</p>
                       <h3>Additional arguments</h3>
                       <p>In code the hash function has the following arguments:</p>
-					  <pre>CryptoLib::hash ($data, $salt = NULL, $raw_output = FALSE, $iterations = 96)</pre>
+					  <pre><code class="php">CryptoLib::hash ($data, $salt = NULL, $raw_output = FALSE, $iterations = 96)</code></pre>
 					  <p>Data is the only compulsory one, it is the data you want to hash, $salt can be specified in case you want to manually hash the password using your own salt (as
 						  opposed to a pseudo randomly generated one). If $raw_ouput is true the function will return binary instead of a string.</p>
 					  <p>
@@ -303,10 +303,10 @@ $isHashCorrect = CryptoLib::validateHash($hash, $_POST['password']);
                     <p>This function uses MCrypt with 3 seperate ciphers (Serpant, then Twofish and finally Rijndael 256) to encrypt the data with multiple layers of encryption.
 						This means if one cipher is broken the others ciphers stand in its way.
 					Below I have demonstrated how you can use the functions in PHP:</p>
-					  <pre>&lt;?php
+					  <pre><code class="php">&lt;?php
 $encryptedString = CryptoLib::encryptData("Test string.", "password");
 $decryptedString = CryptoLib::decryptData($encryptedString, 'password');
-?&gt;</pre>
+?&gt;</code></pre>
 					  <p>
 						  $encryptedString will contain the encrypted data in a format that when provided to the decryptData function with the correct password, the original string will
 						  be returned (see the advanced information section for details on the exact format).
@@ -340,5 +340,9 @@ $decryptedString = CryptoLib::decryptData($encryptedString, 'password');
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- Scripts -->
     <script src="script.js"></script>
+  	<!-- Highlight.js -->
+	<link rel="stylesheet" href="highlight/styles/default.css">
+	<script src="highlight/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
